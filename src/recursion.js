@@ -170,6 +170,15 @@ var multiply = function(x, y) {
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods.
 var divide = function(x, y) {
+  let total = 0;
+  if (x === 0 && y === 0) { return NaN }
+  if (x < y) { return total }
+  if (x < 0 && y < 0) { return divide(-x, -y) }
+  if (x < 0) { return -divide(-x, y) }
+  if (y < 0) { return -divide(x, -y) }
+
+  total++;
+  return total + divide(x - y, y);
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
