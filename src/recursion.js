@@ -226,12 +226,11 @@ var createArray = function(str) {
 
 // 17. Reverse the order of an array
 var reverseArr = function(array) {
-  let reversed = [];
   if (!array.length) {
-    return reversed;
+    return [];
   } else {
-    reversed.push(array.pop());
-    return reversed.concat(reverseArr(array));
+    const last = array.pop();
+    return [last].concat(reverseArr(array));
   }
 };
 
@@ -239,6 +238,7 @@ var reverseArr = function(array) {
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+  return length ? [value].concat(buildList(value, length - 1)) : [];
 };
 
 // 19. Implement FizzBuzz. Given integer n, return an array of the string representations of 1 to n.
