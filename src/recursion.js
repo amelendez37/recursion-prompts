@@ -367,6 +367,11 @@ var nthFibo = function(n) {
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(array) {
+  if (!array.length) {
+    return [];
+  } else {
+    return [array.shift().toUpperCase()].concat(capitalizeWords(array));
+  }
 };
 
 // 28. Given an array of strings, capitalize the first letter of each index.
