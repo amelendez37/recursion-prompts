@@ -534,7 +534,7 @@ var tagCount = function(tag, node) {
 var binarySearch = function(array, target, min, max) {
   min = min === undefined ? 0 : min;
   max = max === undefined ? array.length - 1 : max;
-  let mid = Math.floor((min + max) / 2);
+  const mid = Math.floor((min + max) / 2);
 
   if (min > max) {
     return null;
@@ -551,6 +551,27 @@ var binarySearch = function(array, target, min, max) {
 // mergeSort([34,7,23,32,5,62]) // [5,7,23,32,34,62]
 // https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/divide-and-conquer-algorithms
 var mergeSort = function(array) {
+  const sorted = [];
+  const mid = Math.floor(array.length / 2);
+  let left;
+  let right; 
+
+  if (array.length <= 1) {
+    return array;
+  }
+  
+  left = mergeSort(array.slice(0, mid));
+  right = mergeSort(array.slice(mid));
+
+  while (left.length || right.length) {
+    if (!left.length) { return sorted.concat(right); }
+    if (!right.length) { return sorted.concat(left); }
+    if (left[0] <= right[0]) { 
+      sorted.push(left.shift()); 
+    } else { 
+      sorted.push(right.shift()); 
+    }
+  }
 };
 
 // 40. Deeply clone objects and arrays.
