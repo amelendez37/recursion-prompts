@@ -580,4 +580,21 @@ var mergeSort = function(array) {
 // console.log(obj2); // {a:1,b:{bb:{bbb:2}},c:3}
 // obj1 === obj2 // false
 var clone = function(input) {
+  let copy;
+
+  if (Array.isArray(input)) {
+    copy = [];
+
+    input.forEach(a => {
+      typeof a !== 'object' ? copy.push(a) : copy.push(clone(a));
+    });
+  } else {
+    copy = {};
+
+    Object.keys(input).forEach(a => {
+      typeof input[a] !== 'object' ? copy[a] = input[a] : copy[a] = clone(input[a]);
+    })
+  }
+
+  return copy;
 };
